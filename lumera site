@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lumera — Luz e direção pra você se escolher</title>
+  <meta name="description" content="Tarot orientativo (sem fatalismo) com entrega 100% digital em PDF: bonito, direto e prático, pra você reler quando a ansiedade bater." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --wine:#82161F;
+      --terra:#A8420E;
+      --soft:#BD6F4C;
+      --sand:#EECBaa;
+
+      --bg: var(--sand);
+      --ink: #120C0F;        /* MAIS ESCURO: leitura */
+      --paper: #fff8f0;
+      --line: rgba(130,22,31,.16);
+
+      --radius: 18px;
+      --shadow: 0 14px 40px rgba(20,10,12,.14);
+
+      --serif: "Cormorant Garamond", serif;
+      --text: "Lora", serif;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: var(--text);
+      color: var(--ink);
+      background: var(--bg);
+      line-height:1.78;
+      font-size:18.5px;       /* MAIOR: leitura desktop */
+      font-weight:600;        /* SEMI-NEGRITO */
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+
+    p, li{
+      color: rgba(18,12,15,.90);
+    }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.35);
+      backdrop-filter: blur(6px);
+      font-size:15.5px;
+      letter-spacing:.02em;
+      color: rgba(18,12,15,.88);
+      font-weight:600;
+    }
+
+    .star{
+      width:10px; height:10px; display:inline-block;
+      background: conic-gradient(from 0deg, var(--soft), var(--soft));
+      clip-path: polygon(50% 0%, 61% 36%, 100% 50%, 61% 64%, 50% 100%, 39% 64%, 0% 50%, 39% 36%);
+      opacity:.9;
+    }
+
+    header{
+      position:sticky; top:0; z-index:20;
+      background:rgba(238,203,170,.84);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-family: var(--serif);
+      font-weight:700;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      color: var(--wine);
+    }
+
+    .brand img{
+      width:40px; height:40px; object-fit:contain;
+      border-radius:999px;
+      border:1px solid rgba(130,22,31,.14);
+      background: rgba(255,255,255,.35);
+      padding:6px;
+    }
+
+    nav ul{
+      list-style:none; padding:0; margin:0;
+      display:flex; gap:16px; align-items:center;
+      font-size:15.5px;
+      font-weight:600;
+      color: rgba(18,12,15,.88);
+    }
+
+    nav a{
+      padding:10px 10px;
+      border-radius:12px;
+    }
+    nav a:hover{background:rgba(255,255,255,.35)}
+
+    .cta{display:flex; gap:10px; align-items:center;}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.45);
+      font-size:15.5px;
+      font-weight:600;
+      transition:.18s ease;
+      white-space:nowrap;
+      color: rgba(18,12,15,.92);
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{
+      background: var(--wine);
+      color: var(--paper);
+      border-color: rgba(255,255,255,.12);
+      box-shadow: 0 12px 28px rgba(130,22,31,.25);
+    }
+    .btn.ghost{background:transparent;}
+
+    /* Hero */
+    .hero{padding:44px 0 16px;}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    h1{
+      font-family: var(--serif);
+      font-weight:700;
+      font-size:52px;
+      line-height:1.05;
+      margin:14px 0 12px;
+      color:#1b0f12;
+      letter-spacing:-.02em;
+    }
+
+    .lead{font-size:19px; max-width:62ch; font-weight:600;}
+
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
+
+    .note{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(130,22,31,.12);
+      background: rgba(255,255,255,.35);
+      font-size:15.5px;
+      color: rgba(18,12,15,.90);
+      font-weight:600;
+    }
+
+    .visual{
+      background: rgba(255,255,255,.46);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:18px;
+      min-height: 340px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .halo{
+      position:absolute; inset:-20%;
+      background:
+        radial-gradient(circle at 60% 35%, rgba(212,165,75,.16) 0 22%, transparent 55%),
+        radial-gradient(circle at 40% 65%, rgba(189,111,76,.22) 0 20%, transparent 55%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.55) 0 35%, transparent 70%);
+      filter: blur(2px);
+      opacity:.85;
+      pointer-events:none;
+    }
+
+    .hero-logo{
+      position:relative;
+      width:min(360px, 92%);
+      height:auto;
+      object-fit:contain;
+      border-radius: 20px;
+    }
+
+    section{padding:44px 0;}
+
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+
+    .section-title h2{
+      font-family: var(--serif);
+      font-weight:700;
+      font-size:36px;
+      margin:0;
+      letter-spacing:-.01em;
+      color:#1b0f12;
+    }
+
+    .section-title p{
+      margin:0;
+      max-width:62ch;
+      font-size:18px;
+      font-weight:600;
+      color: rgba(18,12,15,.90);
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.45);
+      box-shadow: 0 10px 26px rgba(20,10,12,.10);
+      padding:18px;
+      overflow:hidden;
+    }
+
+    .card h3{
+      font-family: var(--serif);
+      font-weight:700;
+      font-size:24px;
+      margin:0 0 10px;
+      color:#1b0f12;
+    }
+
+    .card p{margin:0; font-size:17.5px; font-weight:600;}
+
+    .mini{
+      display:flex; align-items:center; gap:10px;
+      margin-bottom:10px;
+      color: var(--wine);
+      font-family: var(--serif);
+      font-weight:700;
+      letter-spacing:.02em;
+      font-size:18px;
+    }
+
+    .dot{
+      width:9px; height:9px; border-radius:999px;
+      background: var(--soft);
+      box-shadow: 0 0 0 4px rgba(189,111,76,.18);
+    }
+
+    .list{display:grid; gap:10px; margin:0; padding:0; list-style:none;}
+
+    .list li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(130,22,31,.10);
+      background: rgba(255,255,255,.35);
+      font-size:17.5px;
+      font-weight:600;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+
+    .step{
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.45);
+    }
+
+    .step .n{
+      width:34px; height:34px; border-radius:999px;
+      display:grid; place-items:center;
+      background: rgba(130,22,31,.10);
+      border:1px solid rgba(130,22,31,.14);
+      color: var(--wine);
+      font-family: var(--serif);
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .step h3{
+      margin:0 0 8px;
+      font-family: var(--serif);
+      font-size:22px;
+      font-weight:800;
+      color:#1b0f12;
+    }
+    .step p{margin:0; font-size:17.5px; font-weight:600;}
+
+    .cta-block{
+      background: var(--wine);
+      color: var(--paper);
+      border-radius: calc(var(--radius) + 6px);
+      padding:26px;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 48px rgba(130,22,31,.22);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .cta-block::before{
+      content:"";
+      position:absolute; inset:-40%;
+      background:
+        radial-gradient(circle at 30% 45%, rgba(238,203,170,.18) 0 20%, transparent 55%),
+        radial-gradient(circle at 70% 55%, rgba(212,165,75,.14) 0 18%, transparent 55%);
+      filter: blur(2px);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .cta-block .txt{position:relative}
+
+    .cta-block h3{
+      font-family: var(--serif);
+      font-size:30px;
+      margin:0 0 8px;
+      letter-spacing:-.01em;
+      font-weight:800;
+    }
+
+    .cta-block p{margin:0; opacity:.95; max-width:62ch; color: var(--paper);}
+
+    .cta-block .btn{
+      position:relative;
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      color: var(--paper);
+    }
+
+    .cta-block .btn.primary{
+      background: var(--paper);
+      color: var(--wine);
+      border-color: transparent;
+    }
+
+    details{
+      border:1px solid rgba(130,22,31,.12);
+      background: rgba(255,255,255,.35);
+      border-radius: 16px;
+      padding: 14px 14px;
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      font-family: var(--serif);
+      color:#1b0f12;
+      font-size:20px;
+    }
+
+    details p{
+      margin-top:10px;
+      margin-bottom:0;
+      font-size:17.5px;
+      font-weight:600;
+    }
+
+    footer{
+      padding:34px 0;
+      border-top:1px solid var(--line);
+      color:rgba(18,12,15,.82);
+    }
+
+    .foot{
+      display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .small{font-size:15.5px; font-weight:600;}
+
+    .links{display:flex; gap:14px; flex-wrap:wrap}
+    .links a{opacity:.85}
+    .links a:hover{opacity:1}
+
+    @media (max-width: 940px){
+      .hero-grid{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+    @media (max-width: 720px){
+      .grid-3{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      h1{font-size:40px}
+      body{font-size:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <!-- COLOQUE NA MESMA PASTA DO INDEX.html -->
+          <!-- Renomeie seus arquivos para estes nomes exatos -->
+          <img src="logo-reduzida.jpeg" alt="Lumera — logo reduzida">
+          <span>LUMERA</span>
+        </a>
+
+        <nav aria-label="Navegação">
+          <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#como-funciona">Como funciona</a></li>
+            <li><a href="#pacotes">Pacotes</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+
+        <div class="cta">
+          <a class="btn ghost" href="#pacotes">Ver pacotes</a>
+          <a class="btn primary" href="https://wa.me/55489919735114?text=QUERO%20LUZ" target="_blank" rel="noreferrer">
+            Agendar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <span class="pill"><span class="star"></span> Luz e direção pra você se escolher.</span>
+            <h1>Quando o amor confunde,<br>você volta pro seu eixo.</h1>
+
+            <p class="lead">
+              Quando o amor confunde — some, volta, esfria, não define — a Lumera te ajuda a <strong>respirar, organizar o caos</strong> e enxergar com clareza.
+            </p>
+
+            <p class="lead">
+              Tarot <strong>orientativo</strong> (sem fatalismo), com entrega 100% digital em <strong>PDF</strong>: bonito, direto e prático, pra você reler quando a ansiedade bater e não voltar pro mesmo ciclo.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="https://wa.me/55489919735114?text=QUERO%20LUZ" target="_blank" rel="noreferrer">Agendar no WhatsApp</a>
+              <a class="btn" href="#como-funciona">Como funciona</a>
+              <a class="btn" href="#pacotes">Pacotes</a>
+            </div>
+
+            <div class="note">
+              <strong>Promessa:</strong> Clareza + próximos passos em um PDF objetivo, para você tomar decisões com mais calma — sem terrorismo e sem promessas deterministas.
+            </div>
+          </div>
+
+          <div class="visual" aria-label="Logo completa da Lumera">
+            <div class="halo"></div>
+            <img class="hero-logo" src="logo-completa.jpeg" alt="Lumera — logo completa">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Sobre a Lumera</h2>
+          <p>A Lumera é um espaço de Tarot orientativo para quem está vivendo rolo confuso / vai-e-volta / falta de definição e sente que isso está consumindo energia.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Clareza sem fatalismo</div>
+            <p>Tarot como ferramenta de orientação e autoconhecimento — tendências, padrões e caminhos possíveis — sem prometer controlar terceiros.</p>
+          </div>
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Direção prática</div>
+            <p>O que fazer, o que evitar e qual limite sustentar — sem se perder em impulso.</p>
+          </div>
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Um PDF pra te ancorar</div>
+            <p>Entrega em texto organizada e acolhedora, com um PDF completo pra reler quando a ansiedade bater e lembrar da sua decisão.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:16px" class="card">
+          <div class="mini"><span class="dot"></span> O que você ganha</div>
+          <ul class="list">
+            <li><span class="star"></span><span><strong>Paz mental com clareza:</strong> você entende o que está acontecendo (sem ficar interpretando migalha).</span></li>
+            <li><span class="star"></span><span><strong>Direção prática:</strong> o que fazer, o que evitar e qual limite sustentar — sem se perder em impulso.</span></li>
+            <li><span class="star"></span><span><strong>Um PDF pra te ancorar:</strong> pra reler quando bater ansiedade e lembrar da sua decisão.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Como funciona</h2>
+          <p>Fluxo simples, direto e reservado — com entrega em PDF por WhatsApp.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="n">1</div>
+            <h3>Você escolhe e chama no WhatsApp</h3>
+            <p>Você escolhe um pacote e chama no WhatsApp.</p>
+          </div>
+          <div class="step">
+            <div class="n">2</div>
+            <h3>Formulário simples</h3>
+            <p>Eu confirmo o recebimento e te envio o formulário (bem simples).</p>
+          </div>
+          <div class="step">
+            <div class="n">3</div>
+            <h3>Pagamento via Pix</h3>
+            <p>Pagamento via Pix.</p>
+          </div>
+          <div class="step">
+            <div class="n">4</div>
+            <h3>Entrega do PDF</h3>
+            <p>Você responde o formulário. Eu preparo sua leitura e entrego seu PDF em até <strong>24h úteis</strong>.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:16px" class="card">
+          <div class="mini"><span class="dot"></span> Prazo de entrega</div>
+          <p><strong>Até 24h úteis</strong>, contadas a partir de <strong>pagamento confirmado + formulário completo</strong>. Dias úteis: segunda a sexta. Se faltar alguma informação ou você demorar a responder, o prazo passa a contar a partir do momento em que eu recebo tudo completo.</p>
+        </div>
+
+        <div style="margin-top:16px" class="grid-3">
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Formato de entrega</div>
+            <p>Atendimento: <strong>100% texto</strong><br>Entrega: <strong>PDF com design</strong> (enviado pelo WhatsApp)</p>
+          </div>
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Privacidade</div>
+            <p>Seu atendimento é <strong>100% reservado</strong>. Você pode enviar apenas o necessário — eu conduzo por perguntas. Prints/depoimentos só são usados com sua autorização e sempre sem identificação.</p>
+          </div>
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Aviso importante</div>
+            <p>A Lumera trabalha com Tarot como ferramenta de orientação e autoconhecimento — tendências, padrões e caminhos possíveis — <strong>sem prometer controlar terceiros</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACOTES -->
+    <section id="pacotes">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Pacotes e serviços</h2>
+          <p>Escolha o nível de profundidade para o seu momento.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Pergunta Luz — R$ 30</h3>
+            <p><strong>Quando escolher:</strong> você precisa de um direcionamento rápido para uma dúvida específica.</p>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> Inclui</div>
+            <ul class="list">
+              <li><span class="star"></span><span>1 pergunta objetiva</span></li>
+              <li><span class="star"></span><span>Resposta + orientação prática</span></li>
+              <li><span class="star"></span><span>PDF (1–2 páginas)</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> Você envia</div>
+            <ul class="list">
+              <li><span class="star"></span><span>Sua pergunta (ou me diga a situação e eu te ajudo a formular)</span></li>
+              <li><span class="star"></span><span>Contexto curto (até 5 linhas)</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> O PDF vem com</div>
+            <ul class="list">
+              <li><span class="star"></span><span>Pergunta reformulada (clareza)</span></li>
+              <li><span class="star"></span><span>Cenário atual</span></li>
+              <li><span class="star"></span><span>Ponto de atenção (onde isso mexe em você)</span></li>
+              <li><span class="star"></span><span>Direção Lumera (o que fazer agora)</span></li>
+              <li><span class="star"></span><span>Próximo passo em 24h (1 ação)</span></li>
+              <li><span class="star"></span><span>Frase-âncora (pra reler quando bater ansiedade)</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <p><strong>Prazo:</strong> até 24h úteis</p>
+          </div>
+
+          <div class="card">
+            <h3>Clareza no Rolo (5 perguntas) — R$ 90</h3>
+            <p><strong>Quando escolher:</strong> rolo/ficante confuso, vai e volta, falta de definição, ansiedade emocional.</p>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> Inclui</div>
+            <ul class="list">
+              <li><span class="star"></span><span>Até 5 perguntas (eu ajudo a formular se você travar)</span></li>
+              <li><span class="star"></span><span>Organização do cenário + respostas + plano prático</span></li>
+              <li><span class="star"></span><span>PDF completo (6–10 páginas)</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> Você envia</div>
+            <ul class="list">
+              <li><span class="star"></span><span>Contexto + objetivo (ex.: “quero decidir se converso ou corto”)</span></li>
+              <li><span class="star"></span><span>Até 5 perguntas</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> O PDF vem com</div>
+            <ul class="list">
+              <li><span class="star"></span><span>Resumo do caso (claro e direto)</span></li>
+              <li><span class="star"></span><span>A dinâmica do rolo (por que confunde)</span></li>
+              <li><span class="star"></span><span>Respostas das 5 perguntas (com orientação e ação)</span></li>
+              <li><span class="star"></span><span>Alertas sem fatalismo (3 riscos + 3 antídotos)</span></li>
+              <li><span class="star"></span><span>Plano Lumera 7 dias (faça / não negocie / evite)</span></li>
+              <li><span class="star"></span><span>Roteiro de conversa (se aplicável) — suave e firme</span></li>
+              <li><span class="star"></span><span>Fechamento + próximo passo único</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <p><strong>Prazo:</strong> até 24h úteis</p>
+          </div>
+
+          <div class="card">
+            <h3>Dossiê Lumera (3 perguntas profundas) — R$ 380</h3>
+            <p><strong>Quando escolher:</strong> caso complexo, padrão repetido, indecisão grande. Para quem quer <strong>decidir</strong> e sustentar limites.</p>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> Inclui</div>
+            <ul class="list">
+              <li><span class="star"></span><span>3 perguntas profundas (com ajuste de formulação)</span></li>
+              <li><span class="star"></span><span>Dois caminhos possíveis + critérios de decisão</span></li>
+              <li><span class="star"></span><span>PDF aprofundado (12–18 páginas)</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> Você envia</div>
+            <ul class="list">
+              <li><span class="star"></span><span>Linha do tempo curta (marcos)</span></li>
+              <li><span class="star"></span><span>3 perguntas profundas (eu posso ajudar a ajustar)</span></li>
+              <li><span class="star"></span><span>Objetivo final (o que você quer sentir/ter depois da leitura)</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <div class="mini"><span class="dot"></span> O PDF vem com</div>
+            <ul class="list">
+              <li><span class="star"></span><span>Resumo executivo (o essencial)</span></li>
+              <li><span class="star"></span><span>Padrão emocional (sem culpa)</span></li>
+              <li><span class="star"></span><span>Dinâmica do vínculo (o que sustenta / o que drena)</span></li>
+              <li><span class="star"></span><span>Respostas das 3 perguntas (com profundidade)</span></li>
+              <li><span class="star"></span><span>Dois caminhos possíveis (A e B) — ganhos e custos</span></li>
+              <li><span class="star"></span><span>Checklist de decisão (critérios claros)</span></li>
+              <li><span class="star"></span><span>Plano Lumera 14 dias (rotina emocional + limites + ações)</span></li>
+              <li><span class="star"></span><span>Roteiro de conversa elegante (se aplicável)</span></li>
+              <li><span class="star"></span><span>Página final: “Quando bater ansiedade, volte aqui”</span></li>
+            </ul>
+
+            <div style="height:10px"></div>
+            <p><strong>Prazo:</strong> até 24h úteis</p>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <div class="cta-block">
+            <div class="txt">
+              <h3>Agendar no WhatsApp</h3>
+              <p>Envie a mensagem: <strong>“QUERO LUZ”</strong>. (Se você está no rolo confuso e quer um plano, comece por <strong>Clareza no Rolo</strong>.)</p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+              <a class="btn" href="#politica">Política</a>
+              <a class="btn primary" href="https://wa.me/55489919735114?text=QUERO%20LUZ" target="_blank" rel="noreferrer">Quero luz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROVAS -->
+    <section id="provas">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>O que costuma mudar depois</h2>
+          <p>Provas (placeholders) e efeitos percebidos — substitua pelos seus prints quando tiver.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Depoimento</div>
+            <p>“Eu finalmente consegui entender o que estava acontecendo e parei de noiar. O PDF ficou muito claro.”</p>
+          </div>
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Depoimento</div>
+            <p>“Me deu direção e, principalmente, calma. Eu reli e consegui sustentar meus limites.”</p>
+          </div>
+          <div class="card">
+            <div class="mini"><span class="dot"></span> Depoimento</div>
+            <p>“Pela primeira vez eu senti que alguém organizou meu caos sem me julgar.”</p>
+          </div>
+        </div>
+
+        <div style="margin-top:16px" class="card">
+          <div class="mini"><span class="dot"></span> Efeitos percebidos</div>
+          <ul class="list">
+            <li><span class="star"></span><span>Mais clareza sobre a dinâmica e o padrão repetido</span></li>
+            <li><span class="star"></span><span>Menos ansiedade e ruminação (reler o PDF ajuda a ancorar)</span></li>
+            <li><span class="star"></span><span>Direção prática (o que fazer agora / o que evitar)</span></li>
+            <li><span class="star"></span><span>Coragem para conversar com firmeza ou encerrar com mais paz</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- POLÍTICA -->
+    <section id="politica">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Política de remarcação, cancelamento e reembolso</h2>
+          <p>Válida para todos os pacotes.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Reembolso 100%</h3>
+            <p>Você tem reembolso total se cancelar <strong>antes de enviar o formulário</strong> (ou antes de responder as perguntas), ou se eu <strong>não cumprir o prazo</strong> (24h úteis) e você não quiser remarcação.</p>
+            <p style="margin-top:10px">Observação: se o atraso acontecer por falta de informações (formulário incompleto) ou por demora no seu retorno, o prazo é ajustado e passa a contar a partir do momento em que eu recebo tudo completo.</p>
+          </div>
+          <div class="card">
+            <h3>Após envio do formulário</h3>
+            <p>Após o envio do formulário, eu já inicio a análise e preparo do seu PDF. Por isso: <strong>não há reembolso</strong> nesse estágio.</p>
+            <p style="margin-top:10px">Você pode escolher <strong>crédito integral por 30 dias</strong> <strong>OU</strong> <strong>1 remarcação</strong> para a próxima disponibilidade.</p>
+          </div>
+          <div class="card">
+            <h3>Remarcação e ajustes</h3>
+            <p><strong>1 remarcação gratuita</strong> se você avisar antes de eu iniciar a análise. Após eu iniciar, a remarcação vira <strong>crédito (30 dias)</strong>.</p>
+            <p style="margin-top:10px"><strong>Ajustes sem custo:</strong> correção de dados e ajuste de clareza.</p>
+            <p style="margin-top:10px"><strong>Novo atendimento:</strong> mudança total de tema, novas perguntas fora do pacote, aprofundamentos adicionais não previstos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>FAQ</h2>
+          <p>Perguntas frequentes.</p>
+        </div>
+
+        <div style="display:grid; gap:12px;">
+          <details>
+            <summary>1) Eu preciso contar tudo?</summary>
+            <p>Não. Você pode enviar apenas o essencial. Eu conduzo por perguntas e você compartilha só o que se sentir confortável.</p>
+          </details>
+
+          <details>
+            <summary>2) Eu não sei formular a pergunta. Tem problema?</summary>
+            <p>Não tem. Você me conta a situação em poucas linhas e eu te ajudo a transformar isso em uma pergunta clara.</p>
+          </details>
+
+          <details>
+            <summary>3) Posso perguntar sobre ele/ela (terceiros)?</summary>
+            <p>Sim, desde que o foco seja clareza da dinâmica e o que você pode fazer. A Lumera não trabalha com promessas de controle sobre terceiros.</p>
+          </details>
+
+          <details>
+            <summary>4) Você faz previsão? Você garante que vai acontecer?</summary>
+            <p>Não. A Lumera trabalha com Tarot orientativo: tendências, padrões e caminhos possíveis — para apoiar suas escolhas, sem fatalismo.</p>
+          </details>
+
+          <details>
+            <summary>5) Posso perguntar “tem outra pessoa / teve traição”?</summary>
+            <p>Você pode trazer essa dúvida. A leitura vai focar em sinais da dinâmica, consistência e limites — não em “investigação” ou certezas absolutas sobre a vida íntima de terceiros.</p>
+          </details>
+
+          <details>
+            <summary>6) Isso substitui terapia, médico ou jurídico?</summary>
+            <p>Não. O Tarot é uma ferramenta de orientação e autoconhecimento. Se o tema envolver saúde mental, segurança, medicina ou questões legais, eu recomendo procurar um profissional especializado.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- AVISO ÉTICO -->
+    <section>
+      <div class="wrap">
+        <div class="card">
+          <div class="mini"><span class="dot"></span> Aviso ético</div>
+          <p>A Lumera trabalha com Tarot orientativo: tendências, padrões e caminhos possíveis. Não há promessa de controle sobre terceiros e o Tarot não substitui terapia, suporte médico ou jurídico.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <a class="brand" href="#top" style="letter-spacing:.18em;">
+            <img src="logo-reduzida.jpeg" alt="Lumera — logo reduzida">
+            <span>LUMERA</span>
+          </a>
+          <div class="links small">
+            <a href="#sobre">Sobre</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#pacotes">Pacotes</a>
+            <a href="#faq">FAQ</a>
+          </div>
+          <div class="small">© <span id="y"></span> Lumera. Todos os direitos reservados.</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
